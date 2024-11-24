@@ -1,0 +1,65 @@
+<section class="shadow rounded ">
+  <div class="p-3">
+    <mat-tab-group>
+      <mat-tab label="Receitas">
+        <ul>
+          <li *ngFor="let item of transacaoList; let i = index">
+            <div class="col-12 m-0 p-0 d-flex align-items-center  " *ngIf="item.tipo == 'RECEITA'">
+              <div class="m-2">{{ item.data | date: 'dd/MM/yyyy' }}</div>
+              <input type="text" (keyup)="validationInput(item.descricao, item)" [(ngModel)]="item.descricao"
+                 (ngModelChange)="startSaveTimer(item)">
+
+              <div class="d-flex align-items-center">
+                <span matPrefix>R$&nbsp;</span>
+                <input type="text" (keyup)="validationInput(item.valor, item)" [(ngModel)]="item.valor"
+                (ngModelChange)="startSaveTimer(item)">
+              </div>
+
+              <button (click)="deleteItemTaskList(item)">
+                <img src="../../../../assets/icons/icon-trash.svg" alt="Trash Icon" >
+              </button>
+            </div>
+          </li>
+        </ul>
+      </mat-tab>
+      <mat-tab label="Despesas">
+        <ul >
+          <li *ngFor="let item of transacaoList; let i = index">
+            <div class="col-12 m-0 p-0 d-flex" *ngIf="item.tipo == 'DESPESA'">
+              <div class="m-2">{{ item.data | date: 'dd/MM/yyyy' }}</div>
+              <input type="text" (keyup)="validationInput(item.descricao, item)" [(ngModel)]="item.descricao"
+                 (ngModelChange)="startSaveTimer(item)">
+
+              <div class="d-flex align-items-center">
+                <span matPrefix>R$&nbsp;</span>
+                <input type="text" (keyup)="validationInput(item.valor, item)" [(ngModel)]="item.valor"
+                (ngModelChange)="startSaveTimer(item)">
+              </div>
+
+              <button (click)="deleteItemTaskList(item)">
+                <img src="../../../../assets/icons/icon-trash.svg" alt="Trash Icon" >
+              </button>
+            </div>
+          </li>
+        </ul>
+      </mat-tab>
+    </mat-tab-group>
+
+  </div>
+
+</section>
+
+<div class="shadow my-3 rounded bg-white d-flex justify-content-center ">
+  <div class="p-3 d-flex justify-content-center">
+    <div class="m-2 receita text-success">R$ {{ totalReceitas }}</div>
+    <div class="m-2 despesa text-danger">R$ {{ totalDespesas }}</div>
+
+    <div class="m-2"> = </div>
+    <div class="m-2"> R$ {{ saldo }}</div>
+  </div>
+
+</div>
+
+
+<app-todo-input-add-itens (emitItemTaskList)="setEmitTaskList($event)"></app-todo-input-add-itens>
+<app-todo-button-delete-all *ngIf="transacaoList.length" (click)="deleteAll()"></app-todo-button-delete-all>

@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+
+  input {
+    width: 80%;
+
+    border: none;
+
+    font-size: 16px;
+    color: var(--extended-primary-light);
+    text-align: center;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: var(--extended-primary-light);
+    }
+  }
+}
