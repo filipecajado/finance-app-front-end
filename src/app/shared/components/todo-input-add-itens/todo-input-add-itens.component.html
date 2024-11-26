@@ -1,4 +1,4 @@
-<div class="d-flex col-12 ">
+<div class="d-flex col-12 justify-content-center">
   <mat-form-field class="m-2">
     <mat-label>Tipo</mat-label>
     <mat-select [(ngModel)]="tipo">
@@ -9,7 +9,6 @@
   <mat-form-field class="m-2">
     <mat-label>Data</mat-label>
     <input matInput [matDatepicker]="picker" [(ngModel)]="data">
-    <mat-hint>DD/MM/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker ></mat-datepicker>
   </mat-form-field>

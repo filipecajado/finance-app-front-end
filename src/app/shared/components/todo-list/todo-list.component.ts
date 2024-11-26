@@ -28,7 +28,7 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTaskList()
+    this.getTransacaoList()
   }
 
   public async setEmitTaskList(event: any) {
@@ -52,7 +52,7 @@ export class TodoListComponent implements OnInit {
 
   public async deleteItemTaskList(task: Transacao) {
     await this.service.delete(task);
-    this.getTaskList();
+    this.getTransacaoList();
   }
 
   public async deleteAll() {
@@ -60,7 +60,9 @@ export class TodoListComponent implements OnInit {
     await this.service.deleteAll();
     if (confirm) {
       this.transacaoList = [];
+      this.getTransacaoList()
     }
+
   }
 
   public validationInput(description: any, task: Transacao) {
@@ -73,7 +75,7 @@ export class TodoListComponent implements OnInit {
     }
   }
 
-  public async getTaskList() {
+  public async getTransacaoList() {
     this.transacaoList = await this.service.getAll()
     this.transacaoList.sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
 
@@ -95,6 +97,6 @@ export class TodoListComponent implements OnInit {
 
   async update(transacao: Transacao) {
     await this.service.update(transacao);
-    this.getTaskList()
+    this.getTransacaoList()
   }
 }
